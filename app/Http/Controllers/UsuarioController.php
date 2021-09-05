@@ -14,7 +14,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return Usuario::all();
     }
 
     /**
@@ -35,7 +35,19 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new Usuario();        
+        $usuario->nombre = $request->nombre;
+        $usuario->tipo_documento = $request->tipo_documento;
+        $usuario->numero_documento = $request->numero_documento;
+        $usuario->dioreccion = $request->dioreccion;
+        $usuario->telefono = $request->telefono;
+        $usuario->direccion = $request->direccion;
+        $usuario->celular = $request->celular;
+        $usuario->email= $request->email;
+        $usuario->estado = $request->estado;
+        $usuario->rol_id = $request->rol_id;
+
+        $usuario->save();
     }
 
     /**
@@ -44,9 +56,9 @@ class UsuarioController extends Controller
      * @param  \App\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(usuario $usuario)
+    public function show($id)
     {
-        //
+        return Usuario::find($id);
     }
 
     /**
@@ -67,9 +79,22 @@ class UsuarioController extends Controller
      * @param  \App\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, usuario $usuario)
+    public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::findOrFail($id); 
+
+        $usuario->nombre = $request->nombre;
+        $usuario->tipo_documento = $request->tipo_documento;
+        $usuario->numero_documento = $request->numero_documento;
+        $usuario->dioreccion = $request->dioreccion;
+        $usuario->telefono = $request->telefono;
+        $usuario->direccion = $request->direccion;
+        $usuario->celular = $request->celular;
+        $usuario->email= $request->email;
+        $usuario->estado = $request->estado;
+        $usuario->rol_id = $request->rol_id;
+
+        $usuario->save();
     }
 
     /**
@@ -78,8 +103,8 @@ class UsuarioController extends Controller
      * @param  \App\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(usuario $usuario)
+    public function destroy($id)
     {
-        //
+        return Usuario::destroy($id);
     }
 }

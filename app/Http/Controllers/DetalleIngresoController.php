@@ -14,7 +14,7 @@ class DetalleIngresoController extends Controller
      */
     public function index()
     {
-        //
+        return Detalle_ingreso::all();
     }
 
     /**
@@ -35,7 +35,13 @@ class DetalleIngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detalle_ingreso = new Detalle_ingreso();
+        $detalle_ingreso->cantidad = $request->cantidad;
+        $detalle_ingreso->precio = $request->precio;
+        $detalle_ingreso->articulo_id = $request->articulo_id;
+        $detalle_ingreso->ingreso_id = $request->ingreso_id;
+            
+        $detalle_ingreso->save();
     }
 
     /**
@@ -44,9 +50,9 @@ class DetalleIngresoController extends Controller
      * @param  \App\detalle_ingreso  $detalle_ingreso
      * @return \Illuminate\Http\Response
      */
-    public function show(detalle_ingreso $detalle_ingreso)
+    public function show($id)
     {
-        //
+        return Detalle_ingreso::find($id);
     }
 
     /**
@@ -67,9 +73,16 @@ class DetalleIngresoController extends Controller
      * @param  \App\detalle_ingreso  $detalle_ingreso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, detalle_ingreso $detalle_ingreso)
+    public function update(Request $request, $id)
     {
-        //
+        $detalle_ingreso=Detalle_ingreso::findOrFail($id);
+
+        $detalle_ingreso->cantidad = $request->cantidad;
+        $detalle_ingreso->precio = $request->precio;
+        $detalle_ingreso->articulo_id = $request->articulo_id;
+        $detalle_ingreso->ingreso_id = $request->ingreso_id;
+            
+        $detalle_ingreso->save();
     }
 
     /**
@@ -78,8 +91,8 @@ class DetalleIngresoController extends Controller
      * @param  \App\detalle_ingreso  $detalle_ingreso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(detalle_ingreso $detalle_ingreso)
+    public function destroy($id)
     {
-        //
+        return Detalle_ingreso::destroy($id);
     }
 }

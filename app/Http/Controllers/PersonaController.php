@@ -15,6 +15,7 @@ class PersonaController extends Controller
     public function index()
     {
         //
+        return Persona::all();
     }
 
     /**
@@ -36,6 +37,8 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
+        $persona = Persona::create($request->all());
+        return $persona;
     }
 
     /**
@@ -44,9 +47,10 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function show(persona $persona)
+    public function show($id)
     {
         //
+        return Persona::find($id);
     }
 
     /**
@@ -67,9 +71,9 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, persona $persona)
+    public function update(Request $request, $id)
     {
-        //
+        return Persona::find($id)->update($request->all());
     }
 
     /**
@@ -78,8 +82,8 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function destroy(persona $persona)
+    public function destroy($id)
     {
-        //
+        return Persona::destroy($id);
     }
 }

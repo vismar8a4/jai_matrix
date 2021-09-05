@@ -17,8 +17,7 @@ class CreateIngresosTable extends Migration
             $table->id();
             $table->string('tipo_comprovante');
             $table->string('serie_comprovante');            
-            $table->string('numero_comprovante');
-            $table->datetime('fecha');            
+            $table->string('numero_comprovante');        
             $table->decimal('impuesto');
             $table->decimal('total');            
             $table->string('estado');

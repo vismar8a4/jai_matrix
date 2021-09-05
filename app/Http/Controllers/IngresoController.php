@@ -14,7 +14,7 @@ class IngresoController extends Controller
      */
     public function index()
     {
-        //
+        return Ingreso::all();
     }
 
     /**
@@ -35,7 +35,18 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingreso = new Ingreso();
+        $ingreso->tipo_comprovante = $request->tipo_comprovante;
+        $ingreso->serie_comprovante = $request->serie_comprovante;
+        $ingreso->numero_comprovante = $request->numero_comprovante;
+        $ingreso->impuesto = $request->impuesto;
+        $ingreso->total = $request->total;
+        $ingreso->estado = $request->estado;
+        $ingreso->persona_id = $request->persona_id;
+        $ingreso->usuario_id = $request->usuario_id;
+
+        $ingreso->save();
+
     }
 
     /**
@@ -44,9 +55,9 @@ class IngresoController extends Controller
      * @param  \App\ingreso  $ingreso
      * @return \Illuminate\Http\Response
      */
-    public function show(ingreso $ingreso)
+    public function show($id)
     {
-        //
+        return Ingreso::find($id);
     }
 
     /**
@@ -67,9 +78,20 @@ class IngresoController extends Controller
      * @param  \App\ingreso  $ingreso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ingreso $ingreso)
+    public function update(Request $request, $id)
     {
-        //
+        $ingreso=Ingreso::findOrFail($id);
+
+        $ingreso->tipo_comprovante = $request->tipo_comprovante;
+        $ingreso->serie_comprovante = $request->serie_comprovante;
+        $ingreso->numero_comprovante = $request->numero_comprovante;
+        $ingreso->impuesto = $request->impuesto;
+        $ingreso->total = $request->total;
+        $ingreso->estado = $request->estado;
+        $ingreso->persona_id = $request->persona_id;
+        $ingreso->usuario_id = $request->usuario_id;
+
+        $ingreso->save();
     }
 
     /**
@@ -78,8 +100,8 @@ class IngresoController extends Controller
      * @param  \App\ingreso  $ingreso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ingreso $ingreso)
+    public function destroy($id)
     {
-        //
+        return Ingreso::destroy($id);
     }
 }

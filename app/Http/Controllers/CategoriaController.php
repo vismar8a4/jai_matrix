@@ -15,6 +15,7 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+        return Categoria::all();
     }
 
     /**
@@ -35,8 +36,11 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // 
+        $categoria = Categoria::create($request->all());
+        return $categoria;
+        
+      }
 
     /**
      * Display the specified resource.
@@ -44,9 +48,10 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(categoria $categoria)
+    public function show($id)
     {
         //
+        return Categoria::find($id);
     }
 
     /**
@@ -67,9 +72,10 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, $id)
     {
         //
+        return Categoria::find($id)->update($request->all());
     }
 
     /**
@@ -78,8 +84,8 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categoria $categoria)
+    public function destroy($id)
     {
-        //
+        return Categoria::destroy($id);
     }
 }

@@ -14,7 +14,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        //
+        return Articulo::all();
     }
 
     /**
@@ -35,7 +35,17 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulo = new Articulo();
+        $articulo->codigo= $request->codigo;
+        $articulo->nombre= $request->nombre;
+        $articulo->precio_venta= $request->precio_venta;
+        $articulo->stock= $request->stock;
+        $articulo->descripcion= $request->descripcion;
+        $articulo->imagen= $request->imagen;
+        $articulo->estado= $request->estado;
+        $articulo->categoria_id= $request->categoria_id;
+
+        $articulo->save();
     }
 
     /**
@@ -44,9 +54,9 @@ class ArticuloController extends Controller
      * @param  \App\articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function show(articulo $articulo)
+    public function show($id)
     {
-        //
+        return Articulo::find($id);
     }
 
     /**
@@ -57,7 +67,7 @@ class ArticuloController extends Controller
      */
     public function edit(articulo $articulo)
     {
-        //
+        
     }
 
     /**
@@ -67,9 +77,21 @@ class ArticuloController extends Controller
      * @param  \App\articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, articulo $articulo)
+    public function update(Request $request, $id)
     {
-        //
+        $articulo=Articulo::findOrFail($id);
+
+        $articulo->codigo= $request->codigo;
+        $articulo->nombre= $request->nombre;
+        $articulo->precio_venta= $request->precio_venta;
+        $articulo->stock= $request->stock;
+        $articulo->descripcion= $request->descripcion;
+        $articulo->imagen= $request->imagen;
+        $articulo->estado= $request->estado;
+        $articulo->categoria_id= $request->categoria_id;
+
+        $articulo->save();
+
     }
 
     /**
@@ -78,8 +100,8 @@ class ArticuloController extends Controller
      * @param  \App\articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(articulo $articulo)
+    public function destroy($id)
     {
-        //
+        return Articulo::destroy($id);
     }
 }

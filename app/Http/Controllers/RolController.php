@@ -15,6 +15,7 @@ class RolController extends Controller
     public function index()
     {
         //
+        return Rol::all();
     }
 
     /**
@@ -36,6 +37,8 @@ class RolController extends Controller
     public function store(Request $request)
     {
         //
+        $rol = Rol::create($request->all());
+        return $rol;
     }
 
     /**
@@ -44,9 +47,10 @@ class RolController extends Controller
      * @param  \App\rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function show(rol $rol)
+    public function show($id)
     {
         //
+        return Rol::find($id);
     }
 
     /**
@@ -67,9 +71,10 @@ class RolController extends Controller
      * @param  \App\rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rol $rol)
+    public function update(Request $request, $id)
     {
         //
+        return Rol::find($id)->update($request->all());
     }
 
     /**
@@ -78,8 +83,8 @@ class RolController extends Controller
      * @param  \App\rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rol $rol)
+    public function destroy($id)
     {
-        //
+        return Rol::destroy($id);
     }
 }
